@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Mau Jadi Pacarku?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root{ --bg:#fff7fb; --pink:#e91e63; --ok:#43a047; --no:#f4511e }
+    body{
+      margin:0; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+      background:var(--bg); font-family:system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color:#7a0040; text-align:center; overflow:hidden; padding:24px;
+    }
+    h1{ font-size:36px; margin:0 0 10px }
+    p{ margin:0 0 18px }
+    .board{ position:relative; width:min(560px, 92vw); height:260px; border-radius:20px; background:#fff; box-shadow:0 12px 28px rgba(233,30,99,.15); display:flex; align-items:center; justify-content:center; gap:16px; margin-top:8px }
+    button{ border:0; padding:10px 16px; border-radius:12px; cursor:pointer; font-weight:600; transition:.2s }
+    #mau{ background:var(--ok); color:#fff }
+    #gamau{ background:var(--no); color:#fff; position:absolute; }
+    #mau:hover{ transform:translateY(-2px) }
+  </style>
+</head>
+<body>
+  <h1>Mau nggak jadi pacarku? 😁✨</h1>
+  <p>Pilih jujur ya… hati-hati tombolnya nakal 😜</p>
+
+  <div class="board" id="board">
+    <button id="mau">Mau! 💚</button>
+    <button id="gamau">Gamau 🙅‍♀️</button>
+  </div>
+
+  <script>
+    const board = document.getElementById('board');
+    const gamau = document.getElementById('gamau');
+    const mau = document.getElementById('mau');
+
+    // Posisi awal "Gamau"
+    const setRandom = () => {
+      const pad = 8;
+      const rect = board.getBoundingClientRect();
+      const x = Math.random() * (rect.width - 100 - pad*2) + pad;
+      const y = Math.random() * (rect.height - 44 - pad*2) + pad;
+      gamau.style.left = x + 'px';
+      gamau.style.top  = y + 'px';
+    };
+    setRandom();
+
+    gamau.addEventListener('mouseenter', setRandom);
+    gamau.addEventListener('click', setRandom);
+
+    mau.addEventListener('click', ()=>alert('Yeay! Kamu resmi jadi kebahagiaanku! 💖'));
+  </script>
+</body>
+</html>
